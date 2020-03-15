@@ -35,6 +35,13 @@ class XmlHelper(object):
     def export_new_library(self):
         self.tree.write('new.xml')
 
+    def change_library_location(self, old, new, test=False):
+        for te in self.get_track_elements():
+            if test:
+               print(te.get('Location').replace(old, new))
+            else:
+                te.attrib['Location'] = te.get('Location').replace(old, new)
+
     def get_track_elements(self):
         return [t for t in self.root.find('COLLECTION').iter('TRACK')]
 
@@ -60,14 +67,17 @@ class XmlHelper(object):
                     self._change_element_file_extension(miss, pre_ext, ext)
                     break
 
-    def get_all_tracks_of_type(self, ext='flac'):
+    def get_all_tracks_of_type(self, ext=None):
+        if ext is None:
+            ext = ['flac', 'm4a']
+
         if ext not in R_FILE_TYPES:
             return
 
-        r_type = R_FILE_TYPES[ext]
         tracks = []
-
-        for te in self.get_track_elements():
-            if te.get('Kind') == r_type:
-                tracks.append(te)
+        for ex in ext:
+            r_type = R_FILE_TYPES[ex]
+            for te in self.get_track_elements():
+                if te.get('Kind') == r_type:
+                    tracks.append(te)
         return tracks
