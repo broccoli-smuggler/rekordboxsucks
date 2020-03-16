@@ -14,10 +14,10 @@ Someday I'll get round to converting within the script, but for now use this exc
 * Drag all of your .flac, .wav and .m4a files into the `decode` tab of the xAct program.
 * Click Decode button
 
-Your library is now in the correct format - aiff (or wav) yay!
+Your library is now in the correct format - aiff yay!
 
 * Go into rekordbox and click File->Export collection in xml format - this will be the input file used for the script
-* `python3 main.py {location of rekordbox.xml file eg. /Users/login/Desktop/rekordbox.xml} {location of root directory of your music library that rekordbox is referencing eg. /Users/login/Desktop/mywickedtunes/}` this will produce a 'new.xml' file.
+* `python3 main.py {location of rekordbox.xml file eg. /Users/login/Desktop/rekordbox.xml}` this will produce a 'new.xml' file.
 * In Preferences->Advanced->Imported library locate the `new.xml` and select it.
 * In View->Layout click on rekordbox xml checkbox
 * You should see all your playlists in the rekordboxml tab on the left of the player
